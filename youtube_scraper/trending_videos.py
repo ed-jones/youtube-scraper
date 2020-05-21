@@ -1,11 +1,11 @@
 from googleapiclient.discovery import build
-from globals import *
+from youtube_scraper.globals import *
 import csv, os
 
-def main():
+def main(api_key):
     if not os.path.isfile(OUTPUT_FILE_NAME):
         addHeading()
-    addBody()
+    addBody(api_key)
 
 def addHeading():
     csvHeading = []
@@ -13,10 +13,10 @@ def addHeading():
         csvHeading += videoDetails['columnNames']
     writeToCSV([csvHeading])
 
-def addBody():
+def addBody(api_key):
     csvBody = []
 
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=api_key)
     
     request = youtube.videos().list(
         part="id, snippet, statistics, contentDetails",
@@ -44,6 +44,3 @@ def writeToCSV(dataToWrite):
     with open(OUTPUT_FILE_NAME, 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerows(dataToWrite)
-
-if __name__ == "__main__":
-    main()
