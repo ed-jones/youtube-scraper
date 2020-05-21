@@ -111,3 +111,4 @@ dmypy.json
 
 # csv
 .csv
+api_key.txt
