@@ -1,7 +1,7 @@
 __version__ = '0.1.0'
 
 import sys, os
-import youtube_scraper.trending_videos
+from youtube_scraper import trending_videos, csv_update
 
 def main():
     api_key = ''
@@ -24,7 +24,7 @@ def main():
 
     elif len(sys.argv) == 3:
         if sys.argv[1] == 'csv':
-            print('csv videos')
+            csv_update.main(api_key, sys.argv[2])
             
     else:
         print('Incorrect number of arguments. Please read the README.md file')
