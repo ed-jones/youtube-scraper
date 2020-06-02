@@ -37,7 +37,7 @@ def main():
             f.write(args.api_key)
             print("Successfully updated API Key")
         except:
-            print("There was an error updating API Key: " + sys.exc_info()[0])
+            print("There was an error updating API Key: " + str(sys.exc_info()[0]))
 
         exit()
 
@@ -49,11 +49,11 @@ def main():
             TrendingVideos(api_key, args.n, args.o.name)
             print("Done")
         except:
-            print("There was an error getting trending videos: " + sys.exc_info()[0])
+            print("There was an error getting trending videos: " + str(sys.exc_info()[0]))
 
     if args.source == 'csv':
         try:
             CSVUpdate(api_key, args.i.name, args.o.name)
             print("Done")
         except:
-            print("There was an error generating new CSV: " + sys.exc_info()[0])
+            print("There was an error generating new CSV: " + str(sys.exc_info()[0]))
